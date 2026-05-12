@@ -6,7 +6,7 @@ function PrimoLayout(){
 
     return <>
         <Navbar/>
-        <main>
+        <main className="">
             <Outlet/>
         </main>
         <Footer/>

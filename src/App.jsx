@@ -13,7 +13,7 @@ function App() {
         <Route element={<PrimoLayout/>}>
           <Route path="/" element={<Homepage/>} />
           <Route path="chi-siamo" element={<ChiSiamo/>} />
-          <Route path="prodtti" element={<Prodotti/>} />
+          <Route path="prodotti" element={<Prodotti/>} />
         </Route>
       </Routes>
     </BrowserRouter>
