@@ -12,7 +12,7 @@ function Prodotti({ products }) {
         <h1>Prodotti</h1>
         <SearchBar/>
         <div className="container">
-            <div className="row">
+            <div className="row g-4">
                 {products.map(product => (
                     <ProductCard
                         key={product.id}
