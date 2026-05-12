@@ -1,18 +1,30 @@
 
-
-function SearchBar() {
+function SearchBar({filter, handleChange, categories}) {
+    console.log(filter);
+    
+    if (!filter) return null;
+    
     return <>
-        <form>
+        <form onSubmit={(event)=>event.preventDefault()}>
             <div>
-                <input 
-                name="search"
-                className="form-control"
-                type="search"
-                placeholder="Inserisci il nome del prodotto"
+                <input
+                    name="search"
+                    className="form-control"
+                    type="text"
+                    placeholder="Inserisci il nome del prodotto"
+                    value={filter.search}
+                    onChange={handleChange}
                 />
-                <select
-                name="categoria">
-                <option value="">Seleziona una categoria</option></select>
+                <select 
+                name="category" 
+                className="form-select" 
+                value={filter.category} 
+                onChange={handleChange}>
+                    <option value="">Tutte le categorie</option>
+                    {categories.map(cat => (
+                        <option key={cat} value={cat}>{cat}</option>
+                    ))}
+                </select>
             </div>
         </form>
     </>;

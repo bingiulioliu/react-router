@@ -1,27 +1,42 @@
 import ProductCard from "../src/components/ProductCard";
 import SearchBar from "../src/components/SearchBar";
+import { useProducts } from "../src/hooks/useProducts";
 
-function Prodotti({ products }) {
+function Prodotti() {
+    
 
-    if (!products) {
-        return <p>Caricamento...</p>;
+    const { filter, filteredProducts, handleChange, categories } = useProducts();
+
+    if (filteredProducts.length === 0 && filter.search === '') {
+        return <div className="container mt-5 text-center"><p>Caricamento prodotti...</p></div>;
     }
 
     return <>
 
         <h1>Prodotti</h1>
-        <SearchBar/>
+        <SearchBar
+            filter={filter}
+            handleChange={handleChange}
+            categories={categories}
+        />
         <div className="container">
             <div className="row g-4">
-                {products.map(product => (
-                    <ProductCard
-                        key={product.id}
-                        title={product.title}
-                        price={product.price}
-                        category={product.category}
-                        image={product.image}
-                    />
-                ))}
+                {filteredProducts.length > 0 ? (
+                    filteredProducts.map(product => (
+                        <div key={product.id} className="col-md-4 col-lg-3">
+                            <ProductCard
+                                image={product.image}
+                                title={product.title}
+                                category={product.category}
+                                price={product.price}
+                            />
+                        </div>
+                    ))
+                ) : (
+                    <div className="text-center py-5">
+                        <p className="text-muted">Nessun prodotto trovato.</p>
+                    </div>
+                )}
             </div>
         </div>
 
