@@ -51,6 +51,10 @@ function Prodotto() {
         }
     };
 
+    // Per blocco se non ci più precedenti o successivi
+    const isFirst = currentIndex <= 0;
+    const isLast = currentIndex === idsArray.length -1;
+
     return <>
         <h1>{currentIndex}</h1>
         <div className="row justify-content-center">
@@ -59,6 +63,7 @@ function Prodotto() {
                     <button
                         className="btn btn-outline-dark fw-bold px-4 py-2 border-3"
                         onClick={prevBtn}
+                        disabled={isFirst}
                     >
                         ← PRECEDENTE
                     </button>
@@ -75,6 +80,7 @@ function Prodotto() {
                     <button
                         className="btn btn-outline-dark fw-bold px-4 py-2 border-3"
                         onClick={nextBtn}
+                        disabled={isLast}
                     >
                         PROSSIMO →
                     </button>
