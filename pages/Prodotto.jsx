@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router";
+import { Link, useParams, useNavigate } from "react-router";
 import { fetchSingleProductData } from "../src/hooks/SingleProductFetch";
 import { useState } from "react";
 import { useEffect } from "react";
