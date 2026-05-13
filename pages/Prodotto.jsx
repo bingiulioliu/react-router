@@ -1,4 +1,4 @@
-import { Link, useParams, useNavigate } from "react-router";
+import { Link, useParams, useNavigate, Navigate } from "react-router";
 import { fetchSingleProductData } from "../src/hooks/SingleProductFetch";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -8,19 +8,20 @@ import { fetchAllIds } from "../src/hooks/FetchAllIds";
 function Prodotto() {
 
     const { productId } = useParams();
-    const [productData, setProductData] = useState({});
+    const [productData, setProductData] = useState(null);
     const [errorMsg, setErrorMsg] = useState('');
     const [idsArray, setIdsArray] = useState([]);
+    const navigate = useNavigate();
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchAllIds()
-            .then (ids=>setIdsArray(ids))
-            .catch(error=>console.error('Id non trovato', error));
-            
+            .then(ids => setIdsArray(ids))
+            .catch(error => console.error('Id non trovato', error));
+
     }, []);
 
     useEffect(() => {
-        setProductData(null); 
+        setProductData(null);
         fetchSingleProductData(productId)
             .then(data => {
                 setProductData(data);
@@ -36,11 +37,41 @@ function Prodotto() {
 
     const currentIndex = idsArray.indexOf(Number(productId));
 
-
+    const prevBtn = () => {
+        if (currentIndex > 0) {
+            const prevId = idsArray[currentIndex - 1];
+            navigate(`/prodotti/${prevId}`)
+        }
+    };
 
     return <>
-    <h1>{currentIndex}</h1>
+        <h1>{currentIndex}</h1>
         <div className="row justify-content-center">
+            <div className="card-footer bg-white border-top-0 p-4">
+                <div className="d-flex justify-content-between gap-2">
+                    <button
+                        className="btn btn-outline-dark fw-bold px-4 py-2 border-3"
+                        onClick={prevBtn}
+                    >
+                        ← PRECEDENTE
+                    </button>
+
+                    <button
+                        className="btn btn-warning fw-bold px-4 py-2 border-bottom border-5 border-dark"
+
+                    >
+                        <Link to='/prodotti'>
+                            TORNA ALLO STORE
+                        </Link>
+                    </button>
+
+                    <button
+                        className="btn btn-outline-dark fw-bold px-4 py-2 border-3"
+                    >
+                        PROSSIMO →
+                    </button>
+                </div>
+            </div>
             <div className="col-md-8">
                 <div className="card shadow-lg border-4 border-dark">
                     <div className="row g-0">
@@ -77,30 +108,7 @@ function Prodotto() {
                 </div>
             </div>
             {/* Torna indietro, avanti e indietro */}
-            <div className="card-footer bg-white border-top-0 p-4">
-                <div className="d-flex justify-content-between gap-2">
-                    <button
-                        className="btn btn-outline-dark fw-bold px-4 py-2 border-3"
-                    >
-                        ← PRECEDENTE
-                    </button>
-
-                    <button
-                        className="btn btn-warning fw-bold px-4 py-2 border-bottom border-5 border-dark"
-
-                    >
-                        <Link to='/prodotti'>
-                        TORNA ALLO STORE
-                        </Link>
-                    </button>
-
-                    <button
-                        className="btn btn-outline-dark fw-bold px-4 py-2 border-3"
-                    >
-                        PROSSIMO →
-                    </button>
-                </div>
-            </div>
+            
         </div>
         {errorMsg && <h1>{errorMsg}</h1>}
     </>
