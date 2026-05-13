@@ -1,6 +1,10 @@
+import { NavLink } from "react-router";
 import ProductCard from "../src/components/ProductCard";
 import SearchBar from "../src/components/SearchBar";
+import { fetchSingleProductData } from "../src/hooks/SingleProductFetch";
 import { useProducts } from "../src/hooks/useProducts";
+
+
 
 function Prodotti() {
     
@@ -24,12 +28,14 @@ function Prodotti() {
                 {filteredProducts.length > 0 ? (
                     filteredProducts.map(product => (
                         <div key={product.id} className="col-md-4 col-lg-3">
+                        <NavLink to={`/products/${product.id}`}>
                             <ProductCard
                                 image={product.image}
                                 title={product.title}
                                 category={product.category}
                                 price={product.price}
                             />
+                        </NavLink>
                         </div>
                     ))
                 ) : (
