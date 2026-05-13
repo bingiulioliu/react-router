@@ -20,8 +20,19 @@ function Prodotto () {
         })
     }, [productId])
 
+    
+    if (!productData) return <p>Caricamento...</p>;
+    const { title, price, description, category, image, rating } = productData;
+    const {rate}=rating;
     return <>
-    <h1>Pagina prodotto {productId}</h1>
+    
+
+    <h1>{title}</h1>
+    <img src={image} alt={title} />
+    <p>{category}</p>
+    <p>{price}</p>
+    <p>{rate}</p>
+    <p>{description}</p>
     {JSON.stringify(productData)}
     {errorMsg && <h1>{errorMsg}</h1> }
     </>
