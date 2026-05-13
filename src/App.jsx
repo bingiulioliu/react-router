@@ -6,6 +6,7 @@ import Prodotti from "../pages/Prodotti";
 import { useState, useEffect } from "react";
 import { useProducts } from "./hooks/useProducts";
 import NotFound from "../pages/NotFound";
+import Prodotto from "../pages/Prodotto";
 
 
 function App() {
@@ -16,7 +17,8 @@ function App() {
         <Route element={<PrimoLayout />}>
           <Route path="/" element={<Homepage />} />
           <Route path="chi-siamo" element={<ChiSiamo />} />
-          <Route path="prodotti" element={<Prodotti/>} />
+          <Route path="prodotti" element={<Prodotti/>}/>
+          <Route path="prodotti/:productId" element={<Prodotto/>}/>
           <Route path="*" element={<NotFound/>} />
         </Route>
       </Routes>

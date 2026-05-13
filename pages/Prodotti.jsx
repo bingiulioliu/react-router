@@ -28,7 +28,7 @@ function Prodotti() {
                 {filteredProducts.length > 0 ? (
                     filteredProducts.map(product => (
                         <div key={product.id} className="col-md-4 col-lg-3">
-                        <NavLink to={`/products/${product.id}`}>
+                        <NavLink to={`/prodotti/${product.id}`}>
                             <ProductCard
                                 image={product.image}
                                 title={product.title}
