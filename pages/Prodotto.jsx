@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { fetchSingleProductData } from "../src/hooks/SingleProductFetch";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -72,8 +72,11 @@ function Prodotto() {
 
                     <button
                         className="btn btn-warning fw-bold px-4 py-2 border-bottom border-5 border-dark"
+
                     >
+                        <Link to='/prodotti'>
                         TORNA ALLO STORE
+                        </Link>
                     </button>
 
                     <button
