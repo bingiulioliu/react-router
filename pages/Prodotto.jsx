@@ -62,12 +62,30 @@ function Prodotto() {
                 </div>
             </div>
             {/* Torna indietro, avanti e indietro */}
-            <div>
+            <div className="card-footer bg-white border-top-0 p-4">
+                <div className="d-flex justify-content-between gap-2">
+                    <button
+                        className="btn btn-outline-dark fw-bold px-4 py-2 border-3"
+                    >
+                        ← PRECEDENTE
+                    </button>
 
+                    <button
+                        className="btn btn-warning fw-bold px-4 py-2 border-bottom border-5 border-dark"
+                    >
+                        TORNA ALLO STORE
+                    </button>
+
+                    <button
+                        className="btn btn-outline-dark fw-bold px-4 py-2 border-3"
+                    >
+                        PROSSIMO →
+                    </button>
+                </div>
             </div>
         </div>
-                {errorMsg && <h1>{errorMsg}</h1>}
-            </>
+        {errorMsg && <h1>{errorMsg}</h1>}
+    </>
 }
 
-            export default Prodotto;
+export default Prodotto;
