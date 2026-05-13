@@ -44,6 +44,13 @@ function Prodotto() {
         }
     };
 
+    const nextBtn = () => {
+        if (currentIndex !== -1 && currentIndex < idsArray.length -1) {
+            const nextId = idsArray[currentIndex + 1];
+            navigate(`/prodotti/${nextId}`)
+        }
+    };
+
     return <>
         <h1>{currentIndex}</h1>
         <div className="row justify-content-center">
@@ -67,6 +74,7 @@ function Prodotto() {
 
                     <button
                         className="btn btn-outline-dark fw-bold px-4 py-2 border-3"
+                        onClick={nextBtn}
                     >
                         PROSSIMO →
                     </button>
@@ -108,7 +116,7 @@ function Prodotto() {
                 </div>
             </div>
             {/* Torna indietro, avanti e indietro */}
-            
+
         </div>
         {errorMsg && <h1>{errorMsg}</h1>}
     </>
