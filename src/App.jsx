@@ -5,6 +5,7 @@ import ChiSiamo from "../pages/ChiSiamo";
 import Prodotti from "../pages/Prodotti";
 import { useState, useEffect } from "react";
 import { useProducts } from "./hooks/useProducts";
+import NotFound from "../pages/NotFound";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="chi-siamo" element={<ChiSiamo />} />
           <Route path="prodotti" element={<Prodotti/>} />
         </Route>
+        <Route path="*" element={<NotFound/>} />
       </Routes>
     </BrowserRouter>
   );
