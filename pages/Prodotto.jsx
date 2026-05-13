@@ -2,6 +2,7 @@ import { Link, useParams, useNavigate } from "react-router";
 import { fetchSingleProductData } from "../src/hooks/SingleProductFetch";
 import { useState } from "react";
 import { useEffect } from "react";
+import { fetchAllIds } from "../src/hooks/FetchAllIds";
 
 
 function Prodotto() {
@@ -9,8 +10,17 @@ function Prodotto() {
     const { productId } = useParams();
     const [productData, setProductData] = useState({});
     const [errorMsg, setErrorMsg] = useState('');
+    const [idsArray, setIdsArray] = useState([]);
+
+    useEffect(()=>{
+        fetchAllIds()
+            .then (ids=>setIdsArray(ids))
+            .catch(error=>console.error('Id non trovato', error));
+            
+    }, []);
 
     useEffect(() => {
+        setProductData(null); 
         fetchSingleProductData(productId)
             .then(data => {
                 setProductData(data);
@@ -18,13 +28,18 @@ function Prodotto() {
             .catch(error => {
                 setErrorMsg(error.message)
             })
-    }, [productId])
+    }, [productId]);
 
 
     if (!productData) return <p>Caricamento...</p>;
     const { title, price, description, category, image, rating } = productData;
 
+    const currentIndex = idsArray.indexOf(Number(productId));
+
+
+
     return <>
+    <h1>{currentIndex}</h1>
         <div className="row justify-content-center">
             <div className="col-md-8">
                 <div className="card shadow-lg border-4 border-dark">
